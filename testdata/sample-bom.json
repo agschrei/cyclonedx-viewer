@@ -1,0 +1,122 @@
+{
+	"bomFormat": "CycloneDX",
+	"specVersion": "1.3",
+	"serialNumber": "urn:uuid:ae5b1ff8-f32a-4118-8776-11f0716f0975",
+	"version": 1,
+	"metadata": {
+	  "timestamp": "2021-09-15T21:12:50Z",
+	  "tools": [
+		{
+		  "vendor": "nexB Inc.",
+		  "name": "scancode-toolkit",
+		  "version": "21.8.4"
+		}
+	  ]
+	},
+	"components": [
+	  {
+		"name": "npm",
+		"version": "2.13.5",
+		"bom-ref": "pkg:npm/npm@2.13.5",
+		"type": "library",
+		"scope": "required",
+		"author": "Isaac Z. Schlueter",
+		"description": "a package manager for JavaScript",
+		"purl": "pkg:npm/npm@2.13.5",
+		"hashes": [
+		  {
+			"alg": "SHA-1",
+			"content": "a124386bce4a90506f28ad4b1d1a804a17baaf32"
+		  }
+		],
+		"licenses": [
+		  {
+			"license": {
+			  "id": "Artistic-2.0",
+			  "name": "Artistic License 2.0",
+			  "url": "https://www.perlfoundation.org/artistic_license_2_0"
+			}
+		  }
+		],
+		"externalReferences": [
+		  {
+			"url": "https://docs.npmjs.com/",
+			"type": "website"
+		  },
+		  {
+			"url": "https://registry.npmjs.org/npm/-/npm-2.13.5.tgz",
+			"type": "distribution"
+		  },
+		  {
+			"url": "http://github.com/npm/npm/issues",
+			"type": "issue-tracker"
+		  },
+		  {
+			"url": "git+https://github.com/npm/npm.git@fc7bbf03e39cc48a8924b90696d28345a6a90f3c",
+			"type": "vcs"
+		  },
+		  {
+			"url": "https://www.npmjs.com/package/npm",
+			"type": "website"
+		  },
+		  {
+			"url": "https://registry.npmjs.org/npm/-/npm-2.13.5.tgz",
+			"type": "distribution"
+		  },
+		  {
+			"url": "https://registry.npmjs.org/npm/2.13.5",
+			"type": "bom"
+		  }
+		]
+	  },
+	  {
+		"name": "abbrev",
+		"version": "1.0.7",
+		"bom-ref": "pkg:npm/abbrev@1.0.7",
+		"type": "library",
+		"scope": "required",
+		"author": "Isaac Z. Schlueter",
+		"description": "Like ruby's abbrev module, but in js",
+		"purl": "pkg:npm/abbrev@1.0.7",
+		"licenses": [
+		  {
+			"license": {
+			  "id": "ISC",
+			  "name": "ISC License",
+			  "url": "http://fedoraproject.org/wiki/Licensing:MIT#Old_Style_with_legal_disclaimer_2"
+			}
+		  }
+		],
+		"externalReferences": [
+		  {
+			"url": "https://registry.npmjs.org/abbrev/-/abbrev-1.0.7.tgz",
+			"type": "distribution"
+		  },
+		  {
+			"url": "http://github.com/isaacs/abbrev-js",
+			"type": "vcs"
+		  },
+		  {
+			"url": "https://www.npmjs.com/package/abbrev",
+			"type": "website"
+		  },
+		  {
+			"url": "https://registry.npmjs.org/abbrev/-/abbrev-1.0.7.tgz",
+			"type": "distribution"
+		  },
+		  {
+			"url": "https://registry.npmjs.org/abbrev/1.0.7",
+			"type": "bom"
+		  }
+		]
+	  }
+	],
+	"dependencies": [
+	  {
+		"ref": "pkg:npm/npm@2.13.5",
+		"dependsOn": [
+		  "pkg:npm/abbrev@1.0.7"
+		]
+	  }
+	]
+  }
