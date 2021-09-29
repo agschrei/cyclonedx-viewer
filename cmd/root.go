@@ -26,49 +26,52 @@ import (
 	"os"
 
 	"github.com/agschrei/cyclonedx-viewer/models"
+
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
-
 	"github.com/spf13/viper"
+
+	log "github.com/sirupsen/logrus"
 )
 
 var (
 	cfgFile string
 	bomPath string
+	banner  string = `
+	|***************************************************************************************|
+	|     ______           __                 ____          _    ___                        |
+	|    / ____/_  _______/ /___  ____  ___  / __ \_  __   | |  / (_)__ _      _____  _____ |
+	|   / /   / / / / ___/ / __ \/ __ \/ _ \/ / / / |/_/   | | / / / _ \ | /| / / _ \/ ___/ |
+	|  / /___/ /_/ / /__/ / /_/ / / / /  __/ /_/ />  <     | |/ / /  __/ |/ |/ /  __/ /     |
+	|  \____/\__, /\___/_/\____/_/ /_/\___/_____/_/|_|     |___/_/\___/|__/|__/\___/_/      |
+	|       /____/                                                                          |
+	|                                                                                       |
+	*****************************************************************************************                                                                                                                                                                                      
+	 `
 	// rootCmd represents the base command when called without any subcommands
 	rootCmd = &cobra.Command{
 		Use:   "cyclonedx-viewer",
 		Short: "a small web server that allows to visually inspect CycloneDx BOMs",
+		Long:  color.GreenString(banner),
 		// Uncomment the following line if your bare application
 		// has an action associated with it:
 		Run: func(cmd *cobra.Command, args []string) { models.ParseCycloneDxBom(bomPath) },
 	}
 )
 
-func PrintBanner() {
-	banner := `
-|***************************************************************************************|
-|     ______           __                 ____          _    ___                        |
-|    / ____/_  _______/ /___  ____  ___  / __ \_  __   | |  / (_)__ _      _____  _____ |
-|   / /   / / / / ___/ / __ \/ __ \/ _ \/ / / / |/_/   | | / / / _ \ | /| / / _ \/ ___/ |
-|  / /___/ /_/ / /__/ / /_/ / / / /  __/ /_/ />  <     | |/ / /  __/ |/ |/ /  __/ /     |
-|  \____/\__, /\___/_/\____/_/ /_/\___/_____/_/|_|     |___/_/\___/|__/|__/\___/_/      |
-|       /____/                                                                          |
-|                                                                                       |
-*****************************************************************************************                                                                                                                                                                                      
- `
-	color.Green(banner)
-}
-
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
-	PrintBanner()
+	log.Info("Initializing CycloneDx Viewer")
 	cobra.CheckErr(rootCmd.Execute())
 }
 
 func init() {
 	cobra.OnInitialize(initConfig)
+	customFormatter := new(log.TextFormatter)
+	customFormatter.TimestampFormat = "2006-01-02 15:04:05"
+	customFormatter.FullTimestamp = true
+	log.SetFormatter(customFormatter)
 
 	// Here you will define your flags and configuration settings.
 	// Cobra supports persistent flags, which, if defined here,
@@ -85,6 +88,7 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
+	log.Info("Initializing config")
 	if cfgFile != "" {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
