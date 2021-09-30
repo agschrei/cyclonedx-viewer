@@ -190,7 +190,24 @@ type CycloneDxBom struct {
 	Compositions       []CycloneDxComposition       `json:"compositions,omitempty"`
 }
 
-func ParseCycloneDxBom(path string) CycloneDxBom {
+//golang doesn't provide an enum type so we introduce this struct to loosely emulate it
+type CycloneDxFlavor string
+
+var CycloneDxFlavors = struct {
+	XML  CycloneDxFlavor
+	JSON CycloneDxFlavor
+}{
+	XML:  "xml",
+	JSON: "json",
+}
+
+type CycloneDxBomContainer struct {
+	BomData string
+	Flavor  CycloneDxFlavor
+	Bom     CycloneDxBom
+}
+
+func ParseCycloneDxBom(path string) CycloneDxBomContainer {
 	bom := CycloneDxBom{}
 	data, err := os.ReadFile(path)
 	if err != nil {
@@ -213,5 +230,9 @@ func ParseCycloneDxBom(path string) CycloneDxBom {
 		panic(err)
 	}
 
-	return bom
+	return CycloneDxBomContainer{
+		Bom:     bom,
+		Flavor:  CycloneDxFlavors.JSON,
+		BomData: string(data),
+	}
 }

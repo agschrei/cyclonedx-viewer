@@ -1,2 +1,4 @@
 bom-output.json
 cyclonedx-viewer
+*.exe
+.vscode/launch.json

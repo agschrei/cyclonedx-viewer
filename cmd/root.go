@@ -25,8 +25,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/agschrei/cyclonedx-viewer/models"
-
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -55,7 +53,7 @@ var (
 		Long:  color.GreenString(banner),
 		// Uncomment the following line if your bare application
 		// has an action associated with it:
-		Run: func(cmd *cobra.Command, args []string) { models.ParseCycloneDxBom(bomPath) },
+		//Run: func(cmd *cobra.Command, args []string) {  },
 	}
 )
 
